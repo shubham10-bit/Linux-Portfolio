@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux SysAdmin Portfolio</title>
+    <!-- Chosen Palette: Terminal Dark (Slate/Black) and Cyber Green/Teal Accent -->
+    <!-- Application Structure Plan: A clean, single-page professional profile. The content is divided into logical, easy-to-scan sections: Profile/Summary, Technical Skills (with a quick visual summary), Practical Linux Experience (the core competency), and Projects/Education. The dark theme and monospace font give it a modern, command-line aesthetic, directly reinforcing the Linux focus. -->
+    <!-- Visualization & Content Choices: 
+        1. Skills Chart -> Goal: Inform/Organize -> Viz: Doughnut Chart -> Interaction: Hover for percentage tooltip -> Justification: Quickly shows the proportional breakdown of the skill set (OS, Languages, Tools) to highlight the strong focus on core Linux-related areas. -> Library: Chart.js.
+        2. Content Blocks -> Goal: Explain -> Method: Clear, card-based lists and highlighted text. -> Justification: Makes dense technical lists (like Linux Experience) scannable and digestible. -> Method: Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #111827; /* Dark Slate Background */
+            color: #d1d5db; /* Light Gray Text */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            background-color: #1f2937; /* Slightly lighter dark gray for cards */
+            border: 1px solid #374151;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+        .text-accent {
+            color: #10b981; /* Emerald Green/Teal accent */
+        }
+        .btn-primary {
+            background-color: #10b981;
+            color: #1f2937;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #059669;
+        }
+        .list-style-terminal > li::before {
+            content: '$ ';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="antialiased p-4">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Profile Header and Summary -->
+        <header class="text-center mb-12">
+            
+            <div class="flex flex-col md:flex-row items-center justify-center md:space-x-8 card p-6 rounded-lg mb-8">
+                
+                <!-- Profile Image Section -->
+                <div class="flex-shrink-0 mb-6 md:mb-0">
+                    <img 
+                        src="mypic.png" 
+                        alt="Profile Portrait Placeholder" 
+                        class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-lg mx-auto"
+                        onerror="this.style.backgroundColor='#4b5563'; this.style.color='#d1d5db'; this.style.textAlign='center'; this.style.lineHeight='10rem'; this.outerHTML='<div class=\'w-40 h-40 rounded-full border-4 border-accent shadow-lg mx-auto bg-gray-600 text-white font-bold text-xl flex items-center justify-center\'>Portrait</div>'"
+                    >
+                </div>
+                
+                <!-- Summary Text Section -->
+                <div class="text-left md:w-3/4">
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Shubham Aeer | Linux SysAdmin Focus</h1>
+                    <p class="text-accent mb-4">Entry-Level Systems Administrator & Automation Enthusiast</p>
+                    <p class="text-sm leading-relaxed">
+                        BCA graduate with a strong foundation in Linux (Ubuntu & Debian) from over two years of daily use, personal projects, and dedicated self-study in system administration, troubleshooting, and scripting. Skilled in Python, Bash, and SQL. Passionate about open-source technologies, cloud computing, and technical support. Seeking an entry-level role at Canonical to apply and expand Linux expertise in a distributed global environment.
+                    </p>
+                    <div class="flex space-x-4 mt-4 text-sm">
+                        <a href="#" class="text-accent hover:underline">Linkedin</a>
+                        <a href="#" class="text-accent hover:underline">Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Skills & Experience -->
+            <div class="lg:col-span-2 space-y-8">
+
+                <!-- Core Linux Experience -->
+                <section class="card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-accent mb-4">Practical Linux Experience</h2>
+                    <p class="text-sm mb-4">Core competencies gained through hands-on practice in various environments.</p>
+                    <ul class="list-style-terminal space-y-3 pl-0 text-sm">
+                        <li>Configured and maintained a local LAMP stack (Linux, Apache, MySQL, PHP) for testing and learning.</li>
+                        <li>Automated routine tasks using Bash scripts (log cleanup, backups, service restarts), improving system hygiene.</li>
+                        <li>Troubleshot performance and system issues using core tools like top, df, and journalctl.</li>
+                        <li>Managed users, permissions, and cron jobs for testing environments, ensuring access control and scheduling.</li>
+                        <li>Practiced SSH setup and remote access between multiple Linux systems securely.</li>
+                        <li>Explored cloud basics including provisioning and monitoring with virtual machines.</li>
+                    </ul>
+                </section>
+
+                <!-- Technical & Academic Projects -->
+                <section class="card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-accent mb-4">Technical & Academic Projects</h2>
+                    <div class="space-y-6">
+                        
+                        <!-- Project 1: Restaurant Website -->
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Restaurant Website (Full Stack)</h3>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-2">
+                                <li>Developed a website with ordering and reservation features using HTML, CSS, JavaScript, PHP, and MySQL.</li>
+                                <li>Crucially, configured and hosted the project on an Ubuntu LAMP environment for full deployment testing.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Project 2: Business Analytics & Data Visualization -->
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Business Analytics & Data Visualization</h3>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-2">
+                                <li>Analyzed datasets using SQL, Excel, and Python (Pandas).</li>
+                                <li>Created interactive dashboards using Google Charts and generated analytical reports.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Project 3: Business Analytics with Python -->
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Business Analytics with Python</h3>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-2">
+                                <li>Performed data analysis, correlation checks, and created visualizations (Matplotlib).</li>
+                                <li>Practiced efficient data handling in a Linux-based Python environment.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Right Column: Skills Chart & Education -->
+            <div class="lg:col-span-1 space-y-8">
+                
+                <!-- Skills Visualization -->
+                <section class="card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-accent mb-4 text-center">Technical Stack Breakdown</h2>
+                    <p class="text-sm text-center mb-4">Proportional focus of my current skill set.</p>
+                    <div class="chart-container">
+                        <canvas id="skillsDoughnutChart"></canvas>
+                    </div>
+                    
+                    <div class="mt-6 space-y-2 text-sm">
+                        <p><span class="text-accent font-semibold">OS/Scripting:</span> Linux (Ubuntu, Debian), Bash, Windows</p>
+                        <p><span class="text-accent font-semibold">Languages:</span> Python, Bash, SQL, PHP</p>
+                        <p><span class="text-accent font-semibold">Tools/Database:</span> Git, VS Code, MySQL</p>
+                    </div>
+                </section>
+
+                <!-- Education & Interests -->
+                <section class="card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-accent mb-4">Education & Focus</h2>
+                    
+                    <!-- Education -->
+                    <h3 class="font-bold text-lg text-white mt-4">Education</h3>
+                    <div class="space-y-1 mt-2 text-sm">
+                        <p>Bachelor Of Computer Application (BCA)</p>
+                        <p class="text-xs text-gray-400">2021-2025 | 8.47 CGPA</p>
+                        <p>Higher Secondary Education</p>
+                        <p class="text-xs text-gray-400">2019-2021 | 72%</p>
+                    </div>
+
+                    <!-- Interests -->
+                    <h3 class="font-bold text-lg text-white mt-4">Interests</h3>
+                    <p class="text-sm leading-relaxed mt-2">
+                        <span class="text-accent font-semibold">Focus Areas:</span> Linux System Administration • Cloud Computing Fundamentals • Cybersecurity Basics • Python Scripting & Automation • Open Source Technologies
+                    </p>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Data derived from the CV for the Doughnut Chart
+            const chartData = {
+                labels: ['Linux / OS & Scripting', 'Backend/DB (Python, SQL, MySQL, PHP)', 'Tools & Web Basics (Git, HTML, CSS)'],
+                data: [45, 35, 20] 
+            };
+
+            const skillsCtx = document.getElementById('skillsDoughnutChart').getContext('2d');
+            
+            new Chart(skillsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        data: chartData.data,
+                        backgroundColor: [
+                            '#10b981', // Emerald Green/Teal (Linux/OS)
+                            '#06b6d4', // Cyan (Backend/DB)
+                            '#475569'  // Slate (Tools)
+                        ],
+                        hoverOffset: 16,
+                        borderWidth: 2,
+                        borderColor: '#111827'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#d1d5db',
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1f2937',
+                            titleColor: '#10b981',
+                            bodyColor: '#d1d5db',
+                            borderColor: '#10b981',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
